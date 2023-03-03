@@ -1,0 +1,15 @@
+{% extends "_helpers/_base.html" %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div>
+        <ul>
+            {% for room in object_list %}
+                <li>
+                    <span>{{ room.name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

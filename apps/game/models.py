@@ -2,10 +2,19 @@ from django.core.exceptions import ValidationError
 from django.db import models
 
 
+class Room(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    # main_player = models.CharField(max_length=100, unique=True)
 # Create your models here.
 class Word(models.Model):
     word = models.CharField(max_length=100, unique=True)
-
+    room = models.ForeignKey(
+        Room,
+        on_delete=models.CASCADE,
+        default=None,
+        null=True,
+        blank=False,
+    )
     def __str__(self) -> str:
         return f"{self.word}"
 
@@ -22,7 +31,5 @@ class Word(models.Model):
             raise ValidationError(f'Enter word begin with "{last_word.word[-1]}"')
 
 
-class Room(models.Model):
-    room_number = models.SmallIntegerField(max_length=100, unique=True)
-    main_player = models.CharField(max_length=100, unique=True)
-    other_player = models.SmallIntegerField(max_length=100, unique=True)
+
+

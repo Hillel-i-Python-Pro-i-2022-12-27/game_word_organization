@@ -32,6 +32,12 @@
 </head>
 <body>
 <h1>Game "Words"!</h1>
+    {% if room.name %}
+        <h3> {{ room.name }} </h3>
+
+    {% else %}
+        temp
+    {% endif %}
 <div class="container-fluid">
     {% include "_helpers/_header.html" %}
     {% block content %}
