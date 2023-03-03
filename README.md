@@ -1,6 +1,7 @@
 # Django application
 
 ---
+
 ## 🏠 Homework
 
 Homework related actions.

@@ -1,11 +1,10 @@
-from django.shortcuts import redirect
-from django.contrib.auth import get_user_model, login
-from django.contrib.auth.views import LoginView
-from django.views.generic import CreateView, UpdateView
-from django.urls import reverse_lazy
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django import forms
-
+from django.contrib.auth import get_user_model, login
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView
 
 User = get_user_model()
 
