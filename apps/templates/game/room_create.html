@@ -1,22 +1,20 @@
-{% extends "_helpers/_base.html" %}
-{% load crispy_forms_filters %}
+{% extends '_helpers/_base.html' %}
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <div>
-    <a href="{% url "game:create" %}">
-        <button type="button" class="btn btn-success">
-            Add word
-        </button>
-    </a>
+    <h1>Create room</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
 
+        {{ form|crispy }}
+        {#        {% if messages %}#}
+        {#            <ul class="messages my-color">#}
+        {#                {% for message in messages %}#}
+        {#                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>#}
+        {#                {% endfor %}#}
+        {#            </ul>#}
+        {#        {% endif %}#}
 
-        <ul>
-            {% for word in object_list %}
-                <li>
-                    <span>{{ word.word }}</span>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 {% endblock %}

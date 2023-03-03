@@ -3,14 +3,17 @@
         <ul class="navbar-nav">
             <div id="logo">
                 <object
-                    type="image/svg+xml"
-                    data="/static/logo/logo.svg">
+                        type="image/svg+xml"
+                        data="/static/logo/logo.svg">
                     <img
-                        src="/logo/logo.svg"
-                        id="logo"
-                        alt="">
+                            src="/logo/logo.svg"
+                            id="logo"
+                            alt="">
                 </object>
             </div>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url "game:rooms_list" %}"> rooms </a>
+            </li>
         </ul>
     </nav>
 </header>

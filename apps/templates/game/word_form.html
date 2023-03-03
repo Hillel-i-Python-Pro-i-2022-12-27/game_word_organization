@@ -5,16 +5,16 @@
 {% block content %}
     <div>
         <form method="post">
-        {% csrf_token %}
+            {% csrf_token %}
 
             {{ form | crispy }}
 
-        <button type="submit" class="btn btn-primary">Add word</button>
-    </form>
-    <a href="{% url "game:list" %}">
-        <button type="button" class="btn btn-info">
-            Back to list
-        </button>
-    </a>
+            <button type="submit" class="btn btn-primary">Add word</button>
+        </form>
+        <a href="{% url "game:list" %}">
+            <button type="button" class="btn btn-info">
+                Back to list
+            </button>
+        </a>
     </div>
 {% endblock %}

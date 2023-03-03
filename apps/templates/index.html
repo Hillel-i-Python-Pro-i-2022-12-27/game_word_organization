@@ -3,11 +3,11 @@
 
 {% block content %}
     <div>
-        <a href="{% url 'game:list' %}">
+        <a href="{% url 'game:room_create' %}">
             <button type="submit" class="btn btn-primary">Start game</button>
         </a>
-    <   a href="{% url 'game:crea' %}">
-            <button type="submit" class="btn btn-primary">Start game</button>
-        </a>
+        {#    <   a href="{% url 'game:create' %}">#}
+        {#            <button type="submit" class="btn btn-primary">Start game</button>#}
+        {#        </a>#}
     </div>
 {% endblock %}
