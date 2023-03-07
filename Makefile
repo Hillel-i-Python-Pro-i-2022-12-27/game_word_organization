@@ -29,7 +29,7 @@ d-purge:
 		docker-compose down --volumes --remove-orphans --rmi local --timeout 0
 
 
-.PHONY: init-dev
+.PHONY:
 # Init environment for development
 init-dev:
 	@pip install --upgrade pip && \
@@ -60,3 +60,15 @@ pre-commit-run:
 # Run tools for all files.
 pre-commit-run-all:
 	@pre-commit run --all-files
+
+
+.PHONY: migrations
+# Make migrations
+migrations:
+	@python manage.py makemigrations
+
+.PHONY: migrate
+# Migrate
+migrate:
+	@python manage.py migrate
+
