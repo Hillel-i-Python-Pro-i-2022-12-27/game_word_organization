@@ -29,7 +29,7 @@ d-purge:
 		docker-compose down --volumes --remove-orphans --rmi local --timeout 0
 
 
-.PHONY:
+.PHONY: init-dev
 # Init environment for development
 init-dev:
 	@pip install --upgrade pip && \
