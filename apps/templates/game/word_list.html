@@ -4,6 +4,7 @@
 
 {% block content %}
     <div>
+        <h1>{{ title }}</h1>
         <a href="{% url "game:create" %}">
             <button type="button" class="btn btn-success">
                 Add word
@@ -12,11 +13,12 @@
 
 
         <ul>
-            {% for word in object_list %}
+            {% for word in words %}
                 <li>
                     <span>{{ word.word }}</span>
                 </li>
             {% endfor %}
         </ul>
+
     </div>
 {% endblock %}

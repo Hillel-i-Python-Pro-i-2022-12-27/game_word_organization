@@ -4,6 +4,11 @@
 
 {% block content %}
     <div>
+        <a href="{% url "game:room_create" %}">
+            <button class="btn btn-primary">
+                Create new room
+            </button>
+        </a>
         <ul>
             {% for room in object_list %}
                 <li>
@@ -11,5 +16,6 @@
                 </li>
             {% endfor %}
         </ul>
+
     </div>
 {% endblock %}
