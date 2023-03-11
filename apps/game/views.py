@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, TemplateView
+from django.views.generic import CreateView, ListView, FormView
 
+from apps.game.forms import WordForm
 from apps.game.models import Word, Room
 
 
@@ -21,20 +22,22 @@ class RoomListView(ListView):
     queryset = Room.objects.all()
 
 
-class RoomView(TemplateView):
-    model = Word
+class RoomView(FormView):
     success_url = reverse_lazy("game:list")
     template_name = "game/word_list.html"
+    form_class = WordForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        room_id = context["pk"]
+        room_id = self.kwargs["pk"]
 
         room = Room.objects.filter(pk=room_id).get()
+        word_form = WordForm
         context["title"] = room.name
         words = room.word_set.all()
         # words = Word.objects.all()
         context["words"] = words
+        context["word_form"] = word_form
 
         return context
 
@@ -51,12 +54,11 @@ class RoomCreate(CreateView):
     model = Room
     template_name = "game/room_create.html"
     fields = ("name",)
-    success_url = reverse_lazy("game:list")
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        # context["name"] =
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["name"] =
+    #     return context
 
 
 # def create(request):
