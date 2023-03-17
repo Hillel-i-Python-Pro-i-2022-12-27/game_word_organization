@@ -27,6 +27,18 @@ class RoomView(FormView):
     template_name = "game/word_list.html"
     form_class = WordForm
 
+    def get_initial(self):
+        initial = super().get_initial()
+        room_id = self.kwargs.get("pk")
+        initial["room"] = Room.objects.get(pk=room_id)
+        initial["word"] = "hello world!"
+        return initial
+
+    def form_valid(self, form):
+        # form.instance.room_id = self.kwargs.get("pk")
+        form.save()
+        return super().form_valid(form)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         room_id = self.kwargs["pk"]
@@ -35,7 +47,7 @@ class RoomView(FormView):
         word_form = WordForm
         context["title"] = room.name
         words = room.word_set.all()
-        # words = Word.objects.all()
+
         context["words"] = words
         context["word_form"] = word_form
 
