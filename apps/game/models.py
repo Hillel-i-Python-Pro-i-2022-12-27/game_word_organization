@@ -32,6 +32,6 @@ class Word(models.Model):
             raise ValidationError("Enter right word!")
         if self.word.find("ь") != -1 or self.word.find("ъ") != -1 or self.word.find("ы") != -1:
             raise ValidationError("Enter right word without ь or ъ or ы!")
-        last_word = Word.objects.order_by("-pk").first()
+        last_word = Word.objects.filter(room_id=self.room_id).order_by("-pk").first()
         if last_word is not None and last_word.word[-1] != self.word[0]:
             raise ValidationError(f'Enter word begin with "{last_word.word[-1]}"')

@@ -27,15 +27,18 @@ class RoomView(FormView):
     template_name = "game/word_list.html"
     form_class = WordForm
 
-    def get_initial(self):
-        initial = super().get_initial()
-        room_id = self.kwargs.get("pk")
-        initial["room"] = Room.objects.get(pk=room_id)
-        initial["word"] = "hello world!"
-        return initial
+    def get_success_url(self):
+        return reverse_lazy("game:room", kwargs={"pk": self.kwargs.get("pk")})
+
+    # def get_initial(self):
+    #     initial = super().get_initial()
+    #     room_id = self.kwargs.get("pk")
+    #     initial["room"] = room_id
+    #     initial["word"] = "hello world!"
+    #     return initial
 
     def form_valid(self, form):
-        # form.instance.room_id = self.kwargs.get("pk")
+        form.instance.room_id = self.kwargs.get("pk")
         form.save()
         return super().form_valid(form)
 
@@ -46,7 +49,7 @@ class RoomView(FormView):
         room = Room.objects.filter(pk=room_id).get()
         word_form = WordForm
         context["title"] = room.name
-        words = room.word_set.all()
+        words = room.word_set.all().order_by("-pk")
 
         context["words"] = words
         context["word_form"] = word_form

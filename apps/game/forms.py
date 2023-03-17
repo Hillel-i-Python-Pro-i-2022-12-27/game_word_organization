@@ -1,4 +1,8 @@
-from django.forms import ModelForm, CharField, HiddenInput
+from django.forms import (
+    ModelForm,
+    # CharField,
+    # HiddenInput,
+)
 
 from apps.game.models import Room, Word
 
@@ -10,8 +14,6 @@ class RoomForm(ModelForm):
 
 
 class WordForm(ModelForm):
-    room = CharField(widget=HiddenInput())
-
     class Meta:
         model = Word
-        fields = ["word", "room"]
+        fields = ("word",)
