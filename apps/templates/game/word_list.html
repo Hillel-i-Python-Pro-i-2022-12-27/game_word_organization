@@ -5,11 +5,18 @@
 {% block content %}
     <div>
         <h1>{{ title }}</h1>
-        <a href="{% url "game:create" %}">
-            <button type="button" class="btn btn-success">
-                Add word
-            </button>
-        </a>
+{#        <a href="{% url "game:create" %}">#}
+{#            <button type="button" class="btn btn-success">#}
+{#                Add word#}
+{#            </button>#}
+{#        </a>#}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ form | crispy }}
+
+            <button type="submit" class="btn btn-primary">Add word</button>
+        </form>
 
 
         <ul>

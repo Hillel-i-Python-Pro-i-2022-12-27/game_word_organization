@@ -1,10 +1,13 @@
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.urls import reverse
 
 
 class Room(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    # main_player = models.CharField(max_length=100, unique=True)
+
+    def get_absolute_url(self):
+        return reverse("game:room", kwargs={"pk": self.pk})
 
 
 # Create your models here.
@@ -13,10 +16,10 @@ class Word(models.Model):
     room = models.ForeignKey(
         Room,
         on_delete=models.CASCADE,
-        default=None,
-        null=True,
+        null=False,
         blank=False,
     )
+    # created_at =
 
     def __str__(self) -> str:
         return f"{self.word}"
