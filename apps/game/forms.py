@@ -1,5 +1,6 @@
 from django.forms import (
     ModelForm,
+    HiddenInput,
     # CharField,
     # HiddenInput,
 )
@@ -16,4 +17,12 @@ class RoomForm(ModelForm):
 class WordForm(ModelForm):
     class Meta:
         model = Word
-        fields = ("word",)
+        fields = (
+            "word",
+            "room",
+            "player",
+        )
+        widgets = {
+            "room": HiddenInput(),
+            "player": HiddenInput(),
+        }
