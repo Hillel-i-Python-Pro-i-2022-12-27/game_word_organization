@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView
 
 User = get_user_model()
 
@@ -29,7 +29,7 @@ class RegisterUserForm(UserCreationForm):
 class SignUpView(CreateView):
     # form_class = UserCreationForm
     form_class = RegisterUserForm
-    template_name = "accounts/signup.html"
+    template_name = "registration/login.html"
     success_url = reverse_lazy("login")
 
     def form_valid(self, form):
@@ -41,16 +41,17 @@ class SignUpView(CreateView):
 class LoginUser(LoginView):
     form_class = AuthenticationForm
     template_name = "registration/login.html"
+    success_url = reverse_lazy("login")
 
 
-class UserUpdateView(UpdateView):
-    model = User
-
-    template_name = "registration/edit.html"
-    fields = (
-        "username",
-        "email",
-        "password",
-        "avatar",
-    )
-    success_url = reverse_lazy("root:index")
+# class UserUpdateView(UpdateView):
+#     model = User
+#
+#     template_name = "registration/edit.html"
+#     fields = (
+#         "username",
+#         "email",
+#         "password",
+#         "avatar",
+#     )
+#     success_url = reverse_lazy("root:index")

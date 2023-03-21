@@ -14,6 +14,20 @@
             <li class="nav-item">
                 <a class="nav-link" href="{% url "game:rooms_list" %}"> rooms </a>
             </li>
+            <div class="user-box">
+            {% if user.is_authenticated %}
+            <div class="user-info">
+                <p>Hello! Dear, {{ user.username }}!</p>
+                </div>
+                    <a type="button" class="btn btn-warning" href="{% url "logout" %}">Log Out</a>
+{#                    <a type="button" class="btn btn-info" href="{% url "users:details" pk=user.id %}">Details</a>#}
+            {% else %}
+                <p>You are unknown user!</p>
+                <p>You need sign in or registration!!</p>
+                <a type="button" class="btn btn-primary" href="{% url "users:login" %}">Log In</a>
+{#                <a type="button" class="btn btn-primary" href="{% url "users:registration" %}">Registration</a>#}
+            {% endif %}
+            </div>
         </ul>
     </nav>
 </header>
