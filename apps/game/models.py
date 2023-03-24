@@ -12,10 +12,20 @@ class Room(models.Model):
     def get_absolute_url(self):
         return reverse("game:room", kwargs={"pk": self.pk})
 
+    @property
+    def counter_words(self):
+        return self.word_set.all().count()
+
+    @property
+    def counter_players(self):
+        # return self.word_set.distinct("player").count()
+        return len(set(self.word_set.values_list("player", flat=True)))
+
 
 # Create your models here.
 class Word(models.Model):
     word = models.CharField(max_length=100, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     room = models.ForeignKey(
         Room,
         on_delete=models.CASCADE,

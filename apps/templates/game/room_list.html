@@ -13,6 +13,10 @@
             {% for room in object_list %}
                 <li>
                     <a href="{% url "game:room" pk=room.id %}"> <span>{{ room.name }}</span> </a>
+                    <p>words in the room: {{ room.counter_words }}</p>
+                    <p>last word: "{{ room.word_set.last }}"</p>
+                    <p>created at: {{ room.word_set.last.created_at }}</p>
+                    <p>players in the room: {{ room.counter_players }}</p>
                 </li>
             {% endfor %}
         </ul>

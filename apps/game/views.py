@@ -87,15 +87,3 @@ class RoomCreate(CreateView):
     #     context = super().get_context_data(**kwargs)
     #     context["name"] =
     #     return context
-
-
-# def create(request):
-#     if request.method == "POST":
-#         form = RoomForm(request.POST)
-#     if form.is_valid():
-#         form.save()
-#         return redirect("game:list")
-#     else:
-#         form = RoomForm()
-#
-#         return render(request, "game/room_create.html", {"form": form})
